@@ -1,0 +1,11 @@
+■実装済の機能
+・Facebookのoauthを使ってログイン
+・FacebookのappId, appSecretは管理画面（pc_backend）から登録
+・Facebookの名前をMemberのnameとして登録
+・PNE3.6系での動作確認
+
+■initial->betaで実装予定の機能
+・PNE3.4系での動作確認
+
+■beta->stableで実装予定の機能
+・メンバー登録時にFacebookからインポートするプロフィールをSNS運営者が指定できるようにする（設定ファイル？管理画面？）
