@@ -1,0 +1,5 @@
+# Package dependency (パッケージの依存性)
+package:
+  openpne: # The dependency with OpenPNE. (OpenPNE との依存性)
+    channel: plugins.openpne.jp
+    min: 3.6.0

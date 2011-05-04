@@ -1,0 +1,32 @@
+enable_mobile:
+  IsConfig:   false
+  Default: 0
+
+enable_pc:
+  IsConfig:   false
+  Default: 1
+
+admin_invite:
+  Default:  false
+
+invite_mode:
+  IsConfig: false
+  Default:  false
+
+facebook_app_id:
+  Name:     "facebook_app_id"
+  Caption:  "your facebook application id"
+  FormType: "input"
+  ValueType: "text"
+  IsConfig:   true
+  IsRequired: true
+  Default:    ""
+
+facebook_app_secret:
+  Name:     "facebook_app_secret"
+  Caption:  "your facebook application secret"
+  FormType: "input"
+  ValueType: "text"
+  IsConfig:   true
+  IsRequired: true
+  Default:    ""
