@@ -3,8 +3,6 @@
 ・FacebookのappId, appSecretは管理画面（pc_backend）から登録
 ・Facebookの名前をMemberのnameとして登録
 ・PNE3.6系での動作確認
-
-■initial->betaで実装予定の機能
 ・PNE3.4系での動作確認
 
 ■beta->stableで実装予定の機能
