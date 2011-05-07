@@ -1,0 +1,7 @@
+loginSuccess:
+  customize:
+    facebook_logo:
+      template: [opAuthFacebookPlugin, logo]
+      is_component: false
+      parts   : [FacebookLogin]
+      target  : [top]

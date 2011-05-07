@@ -1,0 +1,1 @@
+<p><?php echo image_tag('/opAuthFacebookPlugin/img/f_logo.jpg', array('alt'=>__('Login via Facebook'), 'title'=>__('Login via Facebook'))); ?>&nbsp;<?php echo __('Login via Facebook'); ?></p>
