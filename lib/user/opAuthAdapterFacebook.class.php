@@ -17,7 +17,7 @@ class opAuthAdapterFacebook extends opAuthAdapter
     sfContext::getInstance()->getConfiguration()->loadHelpers('Url');
     $this->callbackUrl = url_for('member/login?authMode=Facebook', true);
     
-    if(!empty($this->appId) && !empty($this->appSecret))
+    if (!empty($this->appId) && !empty($this->appSecret))
     {
       $this->facebook = new Facebook(array('appId'=>$this->appId, 'secret'=>$this->appSecret));
     }
@@ -27,14 +27,14 @@ class opAuthAdapterFacebook extends opAuthAdapter
   public function authenticate()
   {
     $result = parent::authenticate();
-    if(!isset($this->facebook))
+    if (!isset($this->facebook))
     {
       return $result;
     }
     
     $fbUserId = $this->facebook->getUser();
     
-    if($fbUserId)
+    if ($fbUserId)
     {
       try
       {
@@ -60,13 +60,13 @@ class opAuthAdapterFacebook extends opAuthAdapter
         
         $result = $member->getId();
       }
-      catch(Exception $e)
+      catch (Exception $e)
       {
         //if error nothing to do
         var_dump($e->getMessage());
       }
       $uri = sfContext::getInstance()->getUser()->getAttribute('next_uri');
-      if($uri)
+      if ($uri)
       {
         sfContext::getInstance()->getUser()->setAttribute('next_uri', false);
         $this->getAuthForm()->setNextUri($uri);
@@ -89,6 +89,7 @@ class opAuthAdapterFacebook extends opAuthAdapter
     }
 
     $member->setIsActive(true);
+
     return $member->save();
   }
 
