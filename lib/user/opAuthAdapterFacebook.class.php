@@ -7,7 +7,7 @@ class opAuthAdapterFacebook extends opAuthAdapter
     $appId = null,
     $appSecret = null,
     $callbackUrl = null,
-    $requestPerms = 'publish_stream,offline_access,user_about_me,user_birthday';
+    $requestPerms = 'email,user_birthday';
   
   
   public function configure()
@@ -19,7 +19,7 @@ class opAuthAdapterFacebook extends opAuthAdapter
     
     if(!empty($this->appId) && !empty($this->appSecret))
     {
-      $this->facebook = new Facebook(array('appId'=>$this->appId, 'secret'=>$this->appSecret, 'cookie'=>true));
+      $this->facebook = new Facebook(array('appId'=>$this->appId, 'secret'=>$this->appSecret));
     }
 
   }
@@ -32,11 +32,12 @@ class opAuthAdapterFacebook extends opAuthAdapter
       return $result;
     }
     
-    if($this->facebook->getSession())
+    $fbUserId = $this->facebook->getUser();
+    
+    if($fbUserId)
     {
       try
       {
-        $fbUserId = $this->facebook->getUser();
         $fbIdConfig = Doctrine::getTable('MemberConfig')->findOneByNameAndValue('facebook_user_id', $fbUserId);
         if($fbIdConfig)
         {
@@ -53,6 +54,7 @@ class opAuthAdapterFacebook extends opAuthAdapter
           //get member info
           $me = $this->facebook->api('/me');
           $member->setName($me['name']);
+          $member->setConfig("pc_address",$me['email']);
         }
         $member->save();
         
@@ -74,7 +76,7 @@ class opAuthAdapterFacebook extends opAuthAdapter
     }
     
     sfContext::getInstance()->getUser()->setAttribute('next_uri', $this->getAuthForm()->getValue('next_uri'));
-    header('Location: '.$this->facebook->getLoginUrl(array('req_perms'=>$this->requestPerms)));
+    header('Location: '.$this->facebook->getLoginUrl(array('scope'=>$this->requestPerms)));
     exit;
   }
 
